@@ -5,6 +5,10 @@ namespace Users\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Users\Http\Requests;
+use Users\Http\Requests\ProfileRequest;
+use Users\Http\Requests\PasswordRequest;
+
+use Users\User;
 
 
 class SettingController extends Controller
@@ -14,9 +18,10 @@ class SettingController extends Controller
       return view('setting.index');
     }
 
-    public function edit()
+    public function edit($id)
     {
-      return view('setting.edit');
+      $user = User::find($id);
+      return view('setting.edit',['user' => $user]);
     }
 
     public function show()
@@ -24,5 +29,16 @@ class SettingController extends Controller
       # code...
     }
 
-    
+    public function store(Request $request)
+    {
+      # code...
+    }
+
+    public function update(Request $request, $id)
+    {
+      # code...
+      echo($id);
+    }
+
+
 }

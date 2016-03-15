@@ -169,6 +169,12 @@ return [
           *
           */
           Zizaco\Entrust\EntrustServiceProvider::class,
+
+          /*
+           *
+           * Mitul/Generator
+           *
+           */
     ],
 
     /*
@@ -228,6 +234,8 @@ return [
           *
           */
          'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+
+
 
     ],
 

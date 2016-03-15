@@ -7,10 +7,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Create User</div>
+                <div class="panel-heading">Create Role</div>
 
                 <div class="panel-body">
-                    <form  action="{{url('user')}}" method="POST">
+                    <form  action="{{url('role')}}" method="POST">
                       <input type="hidden" name="_token" value="{{csrf_token()}}">
                       <div class="row">
                         <div class="col-md-6">
@@ -21,29 +21,23 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group">
-                            <label for="username">UserName</label>
-                            <input type="text" name="username" class="form-control" placeholder="UserName">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email">
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="**********">
+                            <label for="display_name">Display Name</label>
+                            <input type="text" name="display_name" class="form-control" placeholder="Display Name">
                           </div>
                         </div>
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label for="roles">Roles</label>
-                            <select multiple name="roles[]" class="form-control select-roles" >
+                            <label for="description">Description</label>
+                            <textarea name="description" rows="8" cols="40" class="form-control"></textarea>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="permissions">Roles</label>
+                            <select multiple name="permissions[]" class="form-control select-roles" >
                               <option value=""></option>
-                              @foreach($roles as $role)
-                              <option value="{{$role->id}}">{{$role->display_name}}</option>
+                              @foreach($permissions as $permission)
+                              <option value="{{$permission->id}}">{{$permission->display_name}}</option>
                               @endforeach
                             </select>
 

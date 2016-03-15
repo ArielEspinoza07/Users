@@ -23,6 +23,7 @@
                               <th>Name</th>
                               <th>Username</th>
                               <th>Email</th>
+                              <th>Roles</th>
                               <th>created_at</th>
                               <th>updated_at</th>
                               <th>Edit</th>
@@ -36,12 +37,25 @@
                               <td>{{$user->name}}</td>
                               <td>{{$user->username}}</td>
                               <td>{{$user->email}}</td>
+                              <td>
+                                <ul>
+                                @foreach($user->roles as $role)
+                                <li>{{$role->display_name}}</li>
+                                @endforeach
+                                </ul>
+                              </td>
                               <td>{{$user->created_at}}</td>
                               <td>{{$user->updated_at}}</td>
                               <td><a class="btn btn-lg btn-block btn-warning" href="{{URL::to('user/' . $user->id . '/edit')}}" role="button">
                                 <span class='glyphicon glyphicon-pencil'></span></a></td>
-                              <td><a class="btn btn-lg btn-block btn-danger" href="{{URL::to('user/' . $user->id . '/delete')}}" role="button">
-                                <span class='glyphicon glyphicon-trash'></span></a></td>
+                              <td>
+                                <form  action="{{URL::to('user/' . $user->id )}}" method="POST">
+                                  <input name="_method" type="hidden" value="DELETE">
+                                  <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                  <button class="btn btn-lg btn-block btn-danger" type="submit" name="submit">
+                                    <span class='glyphicon glyphicon-trash'></span></button>
+                                </form>
+                              </td>
                             </tr>
                             @endforeach
                           </tbody>

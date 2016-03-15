@@ -23,6 +23,7 @@
                               <th>Name</th>
                               <th>Display_Name</th>
                               <th>Description</th>
+                              <th>Permissions</th>
                               <th>created_at</th>
                               <th>updated_at</th>
                               <th>Edit</th>
@@ -36,12 +37,25 @@
                                 <td>{{$role->name}}</td>
                                 <td>{{$role->display_name}}</td>
                                 <td>{{$role->description}}</td>
+                                <td>
+                                  <ul>
+                                  @foreach($role->permissions as $permission)
+                                  <li>{{$permission->display_name}}</li>
+                                  @endforeach
+                                  </ul>
+                                </td>
                                 <td>{{$role->created_at}}</td>
                                 <td>{{$role->updated_at}}</td>
-                                <td><a class="btn btn-lg btn-block btn-warning" href="{{URL::to('role/' . $user->id . '/edit')}}" role="button">
+                                <td><a class="btn btn-lg btn-block btn-warning" href="{{URL::to('role/' . $role->id . '/edit')}}" role="button">
                                   <span class='glyphicon glyphicon-pencil'></span></a></td>
-                                <td><a class="btn btn-lg btn-block btn-danger" href="{{URL::to('role/' . $user->id . '/delete')}}" role="button">
-                                  <span class='glyphicon glyphicon-trash'></span></a></td>
+                                  <td>
+                                    <form  action="{{URL::to('role/' . $role->id )}}" method="POST">
+                                      <input name="_method" type="hidden" value="DELETE">
+                                      <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                      <button class="btn btn-lg btn-block btn-danger" type="submit" name="submit">
+                                        <span class='glyphicon glyphicon-trash'></span></button>
+                                    </form>
+                                  </td>
                               </tr>
                             @endforeach
                           </tbody>

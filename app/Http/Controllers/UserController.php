@@ -9,6 +9,7 @@ use Users\Http\Requests;
 use Users\Http\Requests\UserRequest;
 
 use Users\User;
+use Users\Role;
 
 use Redirect;
 
@@ -35,14 +36,15 @@ class UserController extends Controller
   public function create()
   {
     # code...
-    return view('user.create');
+    return view('user.create',['roles' => Role::all()]);
   }
 
   public function store(UserRequest $request)
   {
-    User::create($request->all());
+    $user = User::create($request->all());
+    $user->roles()->sync($request->roles);
     flash()->success('User Succesfully created');
-    return Redirect::to('user.index');
+    return Redirect::to('user');
   }
 
   public function show($id)
@@ -52,15 +54,15 @@ class UserController extends Controller
 
   public function edit($id)
   {
-      $user = User::find($id);
-      return view('user.edit',['user' => $user]);
+      return view('user.edit',['user' => User::find($id),'roles' => Role::all()]);
   }
 
-  public function update(UserRequest $request, $id)
+  public function update(Request $request, $id)
   {
       $user = User::find($id);
       $user->fill($request->all());
       $user->save();
+      $user->roles()->sync($request->roles);
       flash()->success('User Succesfully Updated');
       return Redirect::to('user');
   }

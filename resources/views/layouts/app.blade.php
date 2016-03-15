@@ -7,23 +7,12 @@
 
     <title>Laravel</title>
 
-    <!-- Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{asset('plugins/bootstrap/css/bootstrap.min.css')}}">
+	  <link rel="stylesheet" href="{{asset('plugins/bootstrap/css/bootstrap-theme.min.css')}}">
 
-    <!-- Styles -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{asset('css/main.css')}}" media="screen" title="no title" charset="utf-8">
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+    @yield('css')
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default">
@@ -63,9 +52,11 @@
             </div>
         </div>
     </nav>
-    <div class="row">
-      <div class="col-md-6 col-md-offset-4">
-        @include('flash::message')
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          @include('flash::message')
+        </div>
       </div>
     </div>
     <div class="container">
@@ -77,8 +68,9 @@
 
 
     <!-- JavaScripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{{asset('plugins/jquery/js/jquery.js')}}"></script>
+	  <script src="{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    @yield('js')
 </body>
 </html>

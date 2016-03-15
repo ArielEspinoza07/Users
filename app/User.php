@@ -31,4 +31,11 @@ class User extends Authenticatable
             $this->attributes['password'] = \Hash::make($valor);
         }
     }
+
+    public function roles()
+    {
+      # code...
+      return $this->belongsToMany('Users\Role');
+    }
+
 }

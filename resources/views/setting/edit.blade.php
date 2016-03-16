@@ -9,22 +9,22 @@
                 <div class="panel-heading">Change password</div>
 
                 <div class="panel-body">
-                  <form  action="{{URL::to('setting/' . $user->id .'/update')}}" method="PUT">
-                    {!! csrf_field() !!}
+                  <form  action="{{URL::to('setting/' . $user->id .'')}}" method="POST">
+                      <input name="_method" type="hidden" value="PUT">
+                      <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <div class="row">
                       <div class="col-md-8">
                         <div class="form-group">
-                          <input type="hidden" name="id" value="{!! Auth::user()->id !!}">
-                          <label for="password">Old Password</label>
-                          <input type="password" name="password" class="form-control" value="" placeholder="*******************">
+                          <label for="oldpassword">Old Password</label>
+                          <input type="password" name="oldpassword" class="form-control" value="" placeholder="*******************">
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-8">
                         <div class="form-group">
-                          <label for="password">New Password</label>
-                          <input type="password" name="password" class="form-control" value="" placeholder="*******************">
+                          <label for="newpassword">New Password</label>
+                          <input type="password" name="newpassword" class="form-control" value="" placeholder="*******************">
                         </div>
                       </div>
                     </div>
@@ -32,8 +32,8 @@
                     <div class="row">
                       <div class="col-md-8">
                         <div class="form-group">
-                          <label for="password">Confirm new Password</label>
-                          <input type="password" name="password" class="form-control" value="" placeholder="*******************">
+                          <label for="confpassword">Confirm new Password</label>
+                          <input type="password" name="confpassword" class="form-control" value="" placeholder="*******************">
                         </div>
                       </div>
                     </div>

@@ -10,6 +10,8 @@ use Users\Http\Requests\PasswordRequest;
 
 use Users\User;
 
+use Redirect;
+
 
 class SettingController extends Controller
 {
@@ -32,12 +34,16 @@ class SettingController extends Controller
     public function store(Request $request)
     {
       # code...
+
     }
 
     public function update(Request $request, $id)
     {
       # code...
-      echo($id);
+        $user = User::find($id);
+        $user->fill($request->all());
+        $user->save();
+        return Redirect::to('setting');
     }
 
 

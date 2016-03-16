@@ -24,7 +24,9 @@ class PasswordRequest extends Request
     public function rules()
     {
         return [
-            'password' => 'min:5|max:20|required',
+            'oldpassword' => 'min:5|max:20|required',
+            'newpassword' => 'min:5|max:20|required',
+            'confpassword' => 'min:5|max:20|required|same:newpassword',
         ];
     }
 }

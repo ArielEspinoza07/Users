@@ -28,12 +28,12 @@
                         <div class="col-md-12">
                           <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" rows="8" cols="40" class="form-control"></textarea>
+                              <input type="text" name="description" class="form-control" placeholder="Description" >
                           </div>
                         </div>
                         <div class="col-md-12">
                           <div class="form-group">
-                            <label for="permissions">Roles</label>
+                            <label for="permissions">Permissions</label>
                             <select multiple name="permissions[]" class="form-control select-roles" >
                               <option value=""></option>
                               @foreach($permissions as $permission)

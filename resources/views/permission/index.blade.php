@@ -10,7 +10,7 @@
                 <div class="panel-body">
                   <div class="row ">
                     <div class="col-md-6">
-                      <a class="btn btn-lg btn-block btn-info" href="{{url('/role/create')}}" role="button">Create Permission</a>
+                      <a class="btn btn-lg btn-block btn-info" href="{{url('/permission/create')}}" role="button">Create Permission</a>
                     </div>
                   </div>
                    <div class="row space">
@@ -38,10 +38,16 @@
                                 <td>{{$permission->description}}</td>
                                 <td>{{$permission->created_at}}</td>
                                 <td>{{$permission->updated_at}}</td>
-                                <td><a class="btn btn-lg btn-block btn-warning" href="{{URL::to('role/' . $permission->id . '/edit')}}" role="button">
+                                <td><a class="btn btn-lg btn-block btn-warning" href="{{URL::to('permission/' . $permission->id . '/edit')}}" role="button">
                                   <span class='glyphicon glyphicon-pencil'></span></a></td>
-                                <td><a class="btn btn-lg btn-block btn-danger" href="{{URL::to('role/' . $permission->id . '/delete')}}" role="button">
-                                  <span class='glyphicon glyphicon-trash'></span></a></td>
+                                <td>
+                                    <form  action="{{URL::to('permission/' . $permission->id )}}" method="POST">
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                        <button class="btn btn-lg btn-block btn-danger" type="submit" name="submit">
+                                            <span class='glyphicon glyphicon-trash'></span></button>
+                                    </form>
+                                </td>
                               </tr>
                             @endforeach
                           </tbody>
@@ -49,7 +55,11 @@
                       </div>
                     </div>
                   </div>
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            {!! $permissions->render() !!}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

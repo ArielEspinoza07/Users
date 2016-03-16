@@ -9,7 +9,7 @@ class Permission extends Model
   protected $table = 'Permissions';
 
   protected $fillable = [
-      'name', 'display_name', 'descrition',
+      'name', 'display_name', 'description',
   ];
 
   public function roles()

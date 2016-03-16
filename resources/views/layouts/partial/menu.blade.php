@@ -1,7 +1,7 @@
 @if(!Auth::guest())
 <ul class="nav navbar-nav">
   @foreach(Auth::user()->roles as  $role)
-    @if($role->name == 'Admin')
+    @if($role->name == 'Admin' || $role->name == 'Root')
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         <i class="glyphicon glyphicon-tasks"></i> Security <span class="caret"></span></a>

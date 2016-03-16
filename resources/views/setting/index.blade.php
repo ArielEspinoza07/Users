@@ -9,12 +9,12 @@
                 <div class="panel-heading">Profile</div>
 
                 <div class="panel-body">
-                  <form  action="{{url('setting/store')}}" method="POST">
-                      {!! csrf_field() !!}
+                    <form  action="{{URL::to('setting/' . Auth::user()->id .'')}}" method="POST">
+                        <input name="_method" type="hidden" value="PUT">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
                       <div class="row">
                         <div class="col-md-8">
                           <div class="form-group ">
-                            <input type="hidden" name="id" value="{!! Auth::user()->id !!}">
                             <label for="name">Name</label>
                             <input type="text" name="name" class="form-control" value="{!! Auth::user()->name !!}" placeholder="Name">
                           </div>
